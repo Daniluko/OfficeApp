@@ -1,0 +1,2 @@
+Insert into MA_STUDENT.OFFICES (OFFICE,CITY,REGION,TARGET,SALES) values ('99','Kiev ','lol','12','14');
+Insert into MA_STUDENT.OFFICES (OFFICE,CITY,REGION,TARGET,SALES) values ('98','Kiev ','lol','15','14');
