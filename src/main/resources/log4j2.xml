@@ -30,7 +30,7 @@
               SMTPPassword="123456"
               To="danilros99@gmail.com"
               from="danilros99@gmail.com"
-              Subject="Spring  Error Log">
+              Subject="OfficeApp  Error Log">
         </SMTP>
 
     </Appenders>
