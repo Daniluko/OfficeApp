@@ -46,8 +46,7 @@ public class OfficeController {
     }
 
     @PutMapping("/{id}")
-    public @ResponseBody
-    void updateOffice(@PathVariable("id") int id, @RequestParam("region") String region ){
+    public void updateOffice(@PathVariable("id") int id, @RequestParam("region") String region ){
         LOG.info("Update office ");
         Office office = officesService.findOfficeById(BigDecimal.valueOf(id));
         if (Objects.isNull(office)){
