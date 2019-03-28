@@ -24,8 +24,10 @@ import org.springframework.web.context.WebApplicationContext;
 import project.databasesModel.Office;
 import project.dto.ErrorMessage;
 import project.springData.config.MainMvcConfig;
+import project.util.DtoModelsUtil;
 
 import javax.sql.DataSource;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import java.io.IOException;
@@ -124,4 +126,10 @@ public class OfficeControllerTest {
         assertEquals("Cannot delete Office by Id = 9999, because it don't present", errorMessage.getMessage());
     }
 
+    @Test
+    public void testInsertOffice() throws Exception {
+        String json = mapper.writeValueAsString(DtoModelsUtil.officeRequest());
+        MvcResult mvcResult = mockMvc.perform(post("/offices").contentType(MediaType.APPLICATION_JSON).content(json)).andDo(print()).andReturn();
+        assertEquals(Response.Status.OK.getStatusCode(), mvcResult.getResponse().getStatus());
+    }
 }
