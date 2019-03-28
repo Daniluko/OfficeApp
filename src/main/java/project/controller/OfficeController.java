@@ -5,9 +5,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import project.dto.OfficeRequest;
 import project.springData.exception.UpdateException;
+import project.springData.service.OfficeCreator;
 import project.springData.service.OfficesService;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
@@ -23,6 +26,9 @@ public class OfficeController {
 
     @Autowired
     private OfficesService officesService;
+
+    @Autowired
+    private OfficeCreator officeCreator;
 
     @GetMapping("/{id}")
     public @ResponseBody
@@ -66,5 +72,11 @@ public class OfficeController {
         LOG.info("successfully");
     }
 
-
+    @PostMapping
+    public void insertOffice(@Valid @RequestBody OfficeRequest officeRequest){
+        LOG.info("addOffice start, officeRequest={}", officeRequest);
+        Office office = officeCreator.createOffice(officeRequest);
+        officesService.insertOffice(office);
+        LOG.info("insert Office end");
+    }
 }

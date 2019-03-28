@@ -2,6 +2,7 @@ package project.databasesModel;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 @Table(name = "OFFICES",schema = "MA_STUDENT")
@@ -13,8 +14,6 @@ public class Office {
     private String city;
     @Column(name = "REGION")
     private String region;
-    @Column(name = "MGR")
-    private BigDecimal mgr;
     @Column(name = "TARGET")
     private BigDecimal target;
     @Column(name = "SALES")
@@ -27,11 +26,10 @@ public class Office {
         this.office = office;
     }
 
-    public Office(BigDecimal office, String city, String region, BigDecimal mgr, BigDecimal target, BigDecimal sales) {
+    public Office(BigDecimal office, String city, String region, BigDecimal target, BigDecimal sales) {
         this.office = office;
         this.city = city;
         this.region = region;
-        this.mgr = mgr;
         this.target = target;
         this.sales = sales;
     }
@@ -60,14 +58,6 @@ public class Office {
         this.region = region;
     }
 
-    public BigDecimal getMgr() {
-        return mgr;
-    }
-
-    public void setMgr(BigDecimal mgr) {
-        this.mgr = mgr;
-    }
-
     public BigDecimal getTarget() {
         return target;
     }
@@ -84,11 +74,31 @@ public class Office {
         this.sales = sales;
     }
 
-
-
     @Override
     public String toString() {
-        return "Office{" + "office=" + office + ", city='" + city + '\'' + ", region='" + region + '\'' + ", mgr=" + mgr
-                + ", target=" + target + ", sales=" + sales + '}';
+        return "Office{" +
+                "office=" + office +
+                ", city='" + city + '\'' +
+                ", region='" + region + '\'' +
+                ", target=" + target +
+                ", sales=" + sales +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Office)) return false;
+        Office office1 = (Office) o;
+        return Objects.equals(getOffice(), office1.getOffice()) &&
+                Objects.equals(getCity(), office1.getCity()) &&
+                Objects.equals(getRegion(), office1.getRegion()) &&
+                Objects.equals(getTarget(), office1.getTarget()) &&
+                Objects.equals(getSales(), office1.getSales());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getOffice(), getCity(), getRegion(), getTarget(), getSales());
     }
 }
