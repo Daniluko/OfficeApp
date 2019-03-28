@@ -6,6 +6,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * Created by Danylo on 26.03.2019
@@ -63,5 +64,21 @@ public class OfficeRequest {
                 ", region='" + region + '\'' +
                 ", officeDetails=" + officeDetails +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OfficeRequest)) return false;
+        OfficeRequest that = (OfficeRequest) o;
+        return getOffice().equals(that.getOffice()) &&
+                getCity().equals(that.getCity()) &&
+                getRegion().equals(that.getRegion()) &&
+                getOfficeDetails().equals(that.getOfficeDetails());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getOffice(), getCity(), getRegion(), getOfficeDetails());
     }
 }

@@ -4,6 +4,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * Created by Danylo on 26.03.2019
@@ -38,5 +39,19 @@ public class OfficeDetails {
                 "target=" + target +
                 ", sales=" + sales +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OfficeDetails)) return false;
+        OfficeDetails that = (OfficeDetails) o;
+        return getTarget().equals(that.getTarget()) &&
+                getSales().equals(that.getSales());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTarget(), getSales());
     }
 }

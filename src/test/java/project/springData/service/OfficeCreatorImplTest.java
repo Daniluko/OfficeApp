@@ -19,6 +19,6 @@ public class OfficeCreatorImplTest {
         OfficeRequest officeRequest = DtoModelsUtil.officeRequest();
         Office actual = officeCreator.createOffice(officeRequest);
         Office expected = DtoModelsUtil.office();
-        assertNotEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 }
