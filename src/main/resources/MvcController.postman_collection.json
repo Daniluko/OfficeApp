@@ -128,14 +128,113 @@
 		{
 			"name": "delete whit authorize",
 			"request": {
-				"method": "GET",
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
+					"raw": "http://localhost:8089/offices/73",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"offices",
+						"73"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update whit authorize",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
 					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8089/offices/123?region=Запад",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"offices",
+						"123"
+					],
+					"query": [
+						{
+							"key": "region",
+							"value": "Запад"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insert whith authorize",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"city\": \"Kharkov\",\r\n  \"office\": 71,\r\n  \"officeDetails\": {\r\n    \"sales\": 193,\r\n    \"target\": 958\r\n  },\r\n  \"region\": \"East\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8089/offices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"offices"
+					]
 				}
 			},
 			"response": []
