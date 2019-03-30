@@ -1,5 +1,7 @@
 package project.controller;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import project.databasesModel.Office;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -52,6 +54,7 @@ public class OfficeController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation(authorizations = { @Authorization(value = "basicAuth") }, value = "updateOffice")
     public void updateOffice(@PathVariable("id") int id, @RequestParam("region") String region ){
         LOG.info("Update office ");
         Office office = officesService.findOfficeById(BigDecimal.valueOf(id));
@@ -66,6 +69,7 @@ public class OfficeController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation(authorizations = { @Authorization(value = "basicAuth") }, value = "deleteOffice")
     public void deleteOffice(@PathVariable("id") int id){
         LOG.info("Delete office by id " + id);
         officesService.deleteOffice(BigDecimal.valueOf(id));
@@ -73,6 +77,7 @@ public class OfficeController {
     }
 
     @PostMapping
+    @ApiOperation(authorizations = { @Authorization(value = "basicAuth") }, value = "insertOffice")
     public void insertOffice(@Valid @RequestBody OfficeRequest officeRequest){
         LOG.info("addOffice start, officeRequest={}", officeRequest);
         Office office = officeCreator.createOffice(officeRequest);
